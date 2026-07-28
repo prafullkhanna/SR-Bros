@@ -32,7 +32,29 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      {
+        /**
+         * Never let a front-end proxy cache an HTML document.
+         *
+         * Next.js references content-hashed JS chunks from the HTML. If a
+         * cache serves yesterday's HTML after a deploy, it asks for chunk
+         * filenames that no longer exist, hydration fails, and the visitor
+         * sees "Application error: a client-side exception has occurred".
+         *
+         * Static assets under /_next/static are excluded — they are immutable
+         * and *should* be cached hard.
+         */
+        source: "/((?!_next/static|_next/image|favicon.ico).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+        ],
+      },
+    ];
   },
 };
 
