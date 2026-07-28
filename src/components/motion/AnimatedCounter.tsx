@@ -23,7 +23,17 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const prefersReduced = usePrefersReducedMotion();
-  const [display, setDisplay] = useState(0);
+  // Starts at the real value so the server-rendered HTML contains the number
+  // itself — crawlers and no-JS visitors must never see "0 projects built".
+  const [display, setDisplay] = useState(value);
+
+  // On the client, drop back to zero only while the counter is still off-screen,
+  // so the count-up has somewhere to start without a visible flicker.
+  useEffect(() => {
+    if (!prefersReduced && !inView) setDisplay(0);
+    // Intentionally runs once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!inView) return;
@@ -39,10 +49,14 @@ export function AnimatedCounter({
     return () => controls.stop();
   }, [inView, prefersReduced, value, duration]);
 
+  // The final value goes on aria-label rather than in a duplicate sr-only span:
+  // two text nodes would make the DOM read "07" to crawlers and text scrapers.
   return (
-    <span ref={ref} className={className}>
-      <span aria-hidden>{display}{suffix}</span>
-      <span className="sr-only">{value}{suffix}</span>
+    <span ref={ref} className={className} aria-label={`${value}${suffix}`}>
+      <span aria-hidden>
+        {display}
+        {suffix}
+      </span>
     </span>
   );
 }

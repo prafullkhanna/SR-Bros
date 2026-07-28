@@ -51,13 +51,16 @@ export function Hero() {
                   delay: 0.1 + index * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="mr-[0.25em] inline-block"
+                className="inline-block"
               >
                 {index === words.length - 1 ? (
                   <span className="text-gradient">{word}</span>
                 ) : (
                   word
                 )}
+                {/* A real space, not a margin — otherwise the h1 reads
+                    "TheFutureStartsYoung" to crawlers and screen readers. */}
+                {index < words.length - 1 ? " " : ""}
               </motion.span>
             ))}
           </h1>

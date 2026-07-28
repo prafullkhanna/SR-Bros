@@ -13,7 +13,7 @@ git init
 git add .
 git commit -m "feat: SRbros.in portfolio site"
 git branch -M main
-git remote add origin https://github.com/<user>/srbros.in.git
+git remote add origin https://github.com/prafullkhanna/SR-Bros.git
 git push -u origin main
 ```
 
@@ -117,15 +117,98 @@ Vercel KV or Upstash Redis.
 
 ---
 
-## 6. Cloudflare Pages (alternative)
+## 6. Hostinger (Node.js Web App)
 
-- Build command `npx @cloudflare/next-on-pages@1`, output `.vercel/output/static`
-- Set `nodejs_compat` in compatibility flags
-- The `/og` route already runs on the edge runtime, so it is compatible
+Requires a **Business** or **Cloud** plan. Node.js apps are not available on Premium/Single
+shared plans, and VPS plans need manual PM2 + Nginx setup instead.
+
+### Deploy from GitHub
+
+1. hPanel → **Websites** → **Add Website** → **Node.js Apps**
+2. **Import Git Repository** → authorise the Hostinger GitHub app
+3. Select `prafullkhanna/SR-Bros`
+4. Build settings — Next.js is detected automatically. Confirm:
+
+   | Setting | Value |
+   | --- | --- |
+   | Framework | Next.js |
+   | Node version | 22.x (18/20/22/24 supported; `package.json` requires ≥ 20.9) |
+   | Install command | `npm install` |
+   | Build command | `npm run build` |
+   | Output directory | `.next` |
+   | Entry / start | `npm run start` |
+
+5. **Environment Variables** → add `NEXT_PUBLIC_SITE_URL` = `https://srbros.in`
+6. **Deploy**
+
+Pushes to `main` redeploy automatically from then on.
+
+**Do not** set `output: "standalone"` in `next.config.ts`. Hostinger runs `next start` against the
+default `.next` output; standalone mode needs a different entry point and will fail to boot.
+
+### Where the files land
+
+- App build: `/home/{user}/domains/srbros.in/nodejs`
+- Routing: `/home/{user}/domains/srbros.in/public_html/.htaccess` — generated automatically
+
+A **403 after deploy** almost always means that `.htaccess` is missing or stale. Redeploying
+regenerates it.
+
+### Constraints to know
+
+- One GitHub account per hosting plan; all Node.js sites on the plan share it
+- Switching the app to a different repository requires removing and re-adding the website
+- If `srbros.in` already exists as a website on the plan, remove it **after taking a backup** —
+  Node.js apps must be added as a new website
+- There is no "stop" or "delete deployment" control; taking the app offline means removing the
+  website
+- No preview deployments and no one-click rollback — this is the main reason to keep the Vercel
+  project connected to the same repo
+- Server-side apps get a **Restart** button on the dashboard, which is faster than a full rebuild
+  when the process is wedged
+- `npm` runs only during deployment; you cannot run it over SSH on these plans
+
+### When you add real photographs
+
+Self-hosted `next/image` optimisation needs `sharp`:
+
+```bash
+npm install sharp
+```
+
+Vercel bundles it; Hostinger does not. Without it, `next/image` falls back to serving unoptimised
+originals.
+
+### Pointing the domain
+
+Only one host can serve `srbros.in` at a time.
+
+1. In hPanel, make sure the domain uses Hostinger nameservers (`ns1.dns-parking.com`,
+   `ns2.dns-parking.com`) or points at the Hostinger IP
+2. In Vercel, **Settings → Domains → remove `srbros.in`** so two origins do not both claim to be
+   canonical — Vercel keeps building and serving its `*.vercel.app` URL as a fallback
+3. `NEXT_PUBLIC_SITE_URL` stays `https://srbros.in` in both places, so canonical tags always point
+   at the live domain regardless of which host rendered the page
 
 ---
 
-## 7. Rollback
+## 7. Cloudflare Pages (alternative)
+
+- Build command `npx @cloudflare/next-on-pages@1`, output `.vercel/output/static`
+- Set `nodejs_compat` in compatibility flags
+- Note that `/og` is pinned to the Node runtime; review it before moving to a Workers-based host
+
+---
+
+## 8. Rollback
 
 Vercel keeps every deployment. **Deployments → ⋯ → Promote to Production** on any previous build
 restores it instantly — no rebuild, no git revert.
+
+Hostinger has no equivalent. To roll back there, revert the commit in GitHub and push — the
+redeploy is triggered by the push:
+
+```bash
+git revert <bad-commit-sha>
+git push
+```

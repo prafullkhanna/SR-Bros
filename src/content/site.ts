@@ -26,7 +26,7 @@ export const siteConfig = {
 /** Contact channels. Replace the placeholder values before launch. */
 export const contactLinks: Link[] = [
   { label: "Email", href: "mailto:hello@srbros.in", placeholder: true },
-  { label: "GitHub", href: "https://github.com/srbros", placeholder: true },
+  { label: "GitHub", href: "https://github.com/prafullkhanna", placeholder: true },
   { label: "LinkedIn", href: "https://linkedin.com/in/srbros", placeholder: true },
   { label: "Instagram", href: "https://instagram.com/srbros", placeholder: true },
   { label: "YouTube", href: "https://youtube.com/@srbros", placeholder: true },

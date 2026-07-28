@@ -1,7 +1,11 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/content/site";
 
-export const runtime = "edge";
+/**
+ * Node runtime, not edge — this deploys to a self-hosted Node server
+ * (Hostinger) as well as Vercel, and `next/og` works on both.
+ */
+export const runtime = "nodejs";
 
 /** Route handlers may not export `size`/`contentType`, so keep them local. */
 const size = { width: 1200, height: 630 };
