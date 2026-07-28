@@ -54,7 +54,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-6 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-fg-subtle">
-            © {new Date().getFullYear()} Sommay &amp; Ramansh Khanna. Built with Next.js.
+            © {new Date().getFullYear()} Sommay &amp; Ramansh. Built with Next.js.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {contactLinks.map((link) => (

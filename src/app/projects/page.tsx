@@ -13,7 +13,7 @@ import type { WorkStatus } from "@/types";
 export const metadata: Metadata = pageMeta({
   title: "Projects",
   description:
-    "Robotics, AI, software and web projects by Sommay and Ramansh Khanna — each labelled as completed, in progress, concept or planned.",
+    "Robotics, AI, software and web projects by Sommay and Ramansh — each labelled as completed, in progress, concept or planned.",
   path: "/projects",
   keywords: ["robotics projects", "AI projects", "student software projects"],
 });

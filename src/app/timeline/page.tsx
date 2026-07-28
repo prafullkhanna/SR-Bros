@@ -10,7 +10,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Timeline",
   description:
-    "A chronological record of what Sommay and Ramansh Khanna have built and learned — with planned future work clearly marked as such.",
+    "A chronological record of what Sommay and Ramansh have built and learned — with planned future work clearly marked as such.",
   path: "/timeline",
   keywords: ["learning journey", "robotics timeline"],
 });

@@ -11,12 +11,12 @@ export const siteConfig = {
   name: "SRbros",
   domain: "srbros.in",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://srbros.in",
-  title: "SRbros.in — Sommay & Ramansh Khanna",
+  title: "SRbros.in — Sommay & Ramansh",
   tagline: "Two Brothers. One Vision. Building the Future with AI, Robotics & Technology.",
   headline: "The Future Starts Young.",
   subheadline: "Robotics • Artificial Intelligence • Software • Engineering • Innovation",
   description:
-    "SRbros.in is the portfolio of Sommay and Ramansh Khanna — two brothers from Delhi building robotics, AI and software projects, including a disaster-management robot system.",
+    "SRbros.in is the portfolio of Sommay and Ramansh — two brothers from Delhi building robotics, AI and software projects, including a disaster-management robot system.",
   locale: "en_IN",
   founded: 2022,
   quote:

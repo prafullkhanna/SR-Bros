@@ -37,7 +37,7 @@ export function Hero() {
             className="inline-flex items-center gap-2.5 rounded-full border border-hairline bg-graphite/60 px-4 py-1.5 font-display text-xs tracking-[0.14em] text-fg-muted uppercase"
           >
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cyan-accent" />
-            Sommay &amp; Ramansh Khanna · New Delhi
+            Sommay &amp; Ramansh · New Delhi
           </motion.p>
 
           <h1 className="mt-8 font-display text-[clamp(2.75rem,8vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.04em]">

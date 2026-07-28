@@ -10,7 +10,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Gallery",
   description:
-    "Build photos, competition images, workshops and school events from the work of Sommay and Ramansh Khanna.",
+    "Build photos, competition images, workshops and school events from the work of Sommay and Ramansh.",
   path: "/gallery",
   keywords: ["robotics photos", "competition gallery"],
 });

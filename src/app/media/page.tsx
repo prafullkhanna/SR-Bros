@@ -14,7 +14,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Media & recognition",
   description:
-    "Recognition received by Sommay and Ramansh Khanna, and a place for future press coverage. Nothing is listed here before it happens.",
+    "Recognition received by Sommay and Ramansh, and a place for future press coverage. Nothing is listed here before it happens.",
   path: "/media",
   keywords: ["press", "recognition", "awards"],
 });

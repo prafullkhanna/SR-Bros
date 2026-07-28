@@ -13,7 +13,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta({
   title: "Contact",
   description:
-    "Get in touch with Sommay and Ramansh Khanna — for universities, competitions, collaborations, press and incubators.",
+    "Get in touch with Sommay and Ramansh — for universities, competitions, collaborations, press and incubators.",
   path: "/contact",
   keywords: ["contact SRbros", "collaboration"],
 });

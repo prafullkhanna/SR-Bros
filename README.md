@@ -165,4 +165,4 @@ environment variables and CI.
 
 ---
 
-© Sommay & Ramansh Khanna. Built with Next.js.
+© Sommay & Ramansh. Built with Next.js.

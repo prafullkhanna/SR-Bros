@@ -1,5 +1,5 @@
 /**
- * Profiles for Sommay and Ramansh Khanna.
+ * Profiles for Sommay and Ramansh.
  *
  * Editing rules (please keep them):
  *  1. Never add an achievement that has not actually happened.

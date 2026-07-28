@@ -90,7 +90,7 @@ export async function GET(request: Request) {
             color: "#6b768d",
           }}
         >
-          <span>Sommay &amp; Ramansh Khanna</span>
+          <span>Sommay &amp; Ramansh</span>
           <span style={{ color: "#35d6f5" }}>Robotics · AI · Software</span>
         </div>
       </div>

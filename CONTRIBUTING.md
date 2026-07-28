@@ -1,6 +1,6 @@
 # Contributing
 
-This is the personal portfolio of Sommay and Ramansh Khanna. Issues and suggestions are welcome;
+This is the personal portfolio of Sommay and Ramansh. Issues and suggestions are welcome;
 please open an issue before a pull request so we can agree on the direction first.
 
 ## Setup

@@ -164,7 +164,7 @@ export function SkillsRadar() {
         {/* Accessible data table — the same numbers, without relying on the chart. */}
         <table className="mt-7 w-full text-left text-sm">
           <caption className="sr-only">
-            Self-assessed skill levels out of 100 for Sommay and Ramansh Khanna
+            Self-assessed skill levels out of 100 for Sommay and Ramansh
           </caption>
           <thead>
             <tr className="text-xs uppercase tracking-[0.16em] text-fg-subtle">
