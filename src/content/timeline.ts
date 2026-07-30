@@ -110,7 +110,7 @@ export const timeline: TimelineEntry[] = [
     year: "2026",
     title: "NexBrief AI goes live",
     description:
-      "Shipped NexBrief AI at newz.srbros.in — a news platform showing the Left, Centre and Right reading of a story next to a neutral, evidence-based summary. The first project taken all the way to a public product with sign-in and a trial tier.",
+      "Shipped NexBrief AI at newz.srbros.in — Left, Centre and Right perspectives on any story, a live feed with source-credibility ratings, and a fake-news detector. The first project taken all the way to a real product: accounts, a trial, and paid tiers.",
     who: "sommay",
     status: "ongoing",
     tags: ["AI", "Product"],

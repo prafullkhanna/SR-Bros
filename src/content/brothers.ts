@@ -72,9 +72,9 @@ export const brothers: Brother[] = [
         status: "completed",
       },
       {
-        title: "NexBrief AI — live product",
+        title: "NexBrief AI — shipped as a product",
         detail:
-          "Designed and shipped NexBrief AI, a news platform that presents the Left, Centre and Right perspective on a story alongside a neutral summary. Live at newz.srbros.in with Google sign-in and a trial tier. Development is ongoing.",
+          "Designed and shipped NexBrief AI: Left, Centre and Right perspectives on any story, a live news feed with source-credibility ratings drawn from independent evaluators, and a fake-news detector. Live at newz.srbros.in with Google sign-in, a 14-day trial and paid tiers. Development is ongoing.",
         status: "ongoing",
       },
       {
