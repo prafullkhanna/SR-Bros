@@ -7,6 +7,12 @@ import { TiltCard } from "@/components/motion/TiltCard";
 import { PlaceholderArt } from "@/components/effects/PlaceholderArt";
 
 export function ProjectCard({ project }: { project: Project }) {
+  // A project counts as "live" only when it has a real, non-placeholder URL —
+  // so the badge can never appear on something a visitor cannot actually open.
+  const isLive = project.links?.some(
+    (link) => !link.placeholder && link.href.startsWith("http"),
+  );
+
   return (
     <TiltCard className="h-full" intensity={4}>
       <article className="gradient-border group h-full overflow-hidden rounded-[var(--radius-card)] border border-hairline bg-graphite/70 transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1">
@@ -18,8 +24,17 @@ export function ProjectCard({ project }: { project: Project }) {
               label={project.title}
               className="h-full w-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
             />
-            <div className="absolute left-4 top-4">
+            <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
               <StatusPill status={project.status} />
+              {isLive && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-accent/30 bg-void/70 px-2.5 py-1 font-display text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-emerald-accent">
+                  <span
+                    aria-hidden
+                    className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-accent"
+                  />
+                  Live
+                </span>
+              )}
             </div>
           </div>
 

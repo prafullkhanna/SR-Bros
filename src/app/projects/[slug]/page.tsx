@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight, Lightbulb } from "lucide-react";
 
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
+import { ButtonLink } from "@/components/ui/Button";
 import { StatusPill } from "@/components/ui/StatusPill";
 import { Tag } from "@/components/ui/Tag";
 import { ProjectCard } from "@/components/cards/ProjectCard";
@@ -49,6 +50,10 @@ export default async function ProjectPage({
   const related = projects
     .filter((item) => item.slug !== project.slug && item.category === project.category)
     .slice(0, 3);
+
+  const liveLink = project.links?.find(
+    (link) => !link.placeholder && link.href.startsWith("http"),
+  );
 
   return (
     <>
@@ -97,6 +102,26 @@ export default async function ProjectPage({
                 {statusMeta[project.status].description}
               </p>
             </Reveal>
+
+            {/* A project someone can actually open deserves more than a
+                sidebar link — surface it as the primary action. */}
+            {liveLink && (
+              <Reveal delay={0.2}>
+                <div className="mt-8">
+                  <ButtonLink href={liveLink.href} size="lg" external>
+                    <span
+                      aria-hidden
+                      className="h-2 w-2 animate-pulse rounded-full bg-emerald-accent"
+                    />
+                    Open {project.title}
+                    <ArrowUpRight size={16} aria-hidden />
+                  </ButtonLink>
+                  <p className="mt-3 text-xs text-fg-subtle">
+                    Opens {new URL(liveLink.href).hostname} in a new tab.
+                  </p>
+                </div>
+              </Reveal>
+            )}
           </div>
         </Section>
 

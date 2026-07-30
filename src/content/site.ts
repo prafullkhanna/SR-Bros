@@ -48,6 +48,7 @@ export const footerGroups = [
     title: "Work",
     links: [
       { label: "All projects", href: "/projects" },
+      { label: "NexBrief AI — live", href: "/projects/nexbrief-ai" },
       { label: "Disaster Management Robot", href: "/projects/disaster-management-robot" },
       { label: "Robotics", href: "/robotics" },
       { label: "AI experiments", href: "/ai" },

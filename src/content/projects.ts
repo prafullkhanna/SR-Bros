@@ -13,6 +13,77 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "nexbrief-ai",
+    title: "NexBrief AI",
+    tagline: "A news platform that shows the Left, Centre and Right reading of the same story.",
+    summary:
+      "NexBrief AI answers a question about any news story three times over — from the Left, Centre and Right — and then gives a neutral, evidence-based summary. The aim is not to tell you what to think, but to make the shape of the disagreement visible.",
+    category: "ai",
+    status: "ongoing",
+    owner: "sommay",
+    period: "2026 — present",
+    accent: "amber",
+    stack: [
+      "Next.js",
+      "React",
+      "Large language models",
+      "News source APIs",
+      "Prompt engineering",
+      "Google OAuth",
+      "Subscription billing",
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "Two people can read the news every day and end up with incompatible pictures of the same event. The cause is rarely invented facts — it is selection and framing. Which details lead, which are buried, which words are chosen. A reader seeing one outlet has no way to tell what was left out, and reading across the spectrum manually costs time nobody has.",
+        points: [
+          "Framing differences are invisible when you only read one source",
+          "Comparing outlets by hand is slow and most people will not do it",
+          "Treating a summary as neutral does not make it neutral",
+        ],
+      },
+      {
+        heading: "Solution",
+        body: "Ask a question and get the same story presented from three positions — Left, Centre and Right — side by side, followed by a neutral, evidence-based answer. Putting the three readings next to each other turns framing from something invisible into something a reader can inspect directly.",
+        points: [
+          "Ask anything; the system builds the perspectives from current sources",
+          "Left, Centre and Right presented in parallel, not blended into one voice",
+          "A separate neutral summary grounded in what the sources actually report",
+          "The disagreement itself becomes the information",
+        ],
+      },
+      {
+        heading: "Approach",
+        body: "The perspectives are generated from real published reporting rather than invented, which makes source selection and prompt design the core of the work — the model has to characterise a position without adopting or caricaturing it.",
+        points: [
+          "News source APIs supply the underlying articles",
+          "Constrained prompting to keep each perspective faithful to its sources",
+          "A neutral pass that reports the factual overlap between them",
+          "Google OAuth for sign-in, with a 14-day trial before any payment",
+        ],
+      },
+      {
+        heading: "The hard part",
+        body: "Every difficult question in this project is a judgement call, not a technical one. What counts as the Centre? How do you represent a position accurately without endorsing it? When sources genuinely conflict on a fact rather than a framing, what does the neutral summary say? These are worked on continuously and are the reason the project is described as in progress rather than finished.",
+      },
+      {
+        heading: "Status",
+        body: "Live and publicly accessible at newz.srbros.in. Sign-in with Google is required to use the product, and new visitors get a 14-day trial without a card. Development is ongoing.",
+      },
+    ],
+    futureScope: [
+      "Source transparency — showing exactly which articles produced each perspective",
+      "Bias-rating data to make outlet placement explicit rather than implied",
+      "Coverage of regional and non-English sources",
+      "A public demo that does not require sign-in",
+      "Saved topics and change-over-time tracking on a running story",
+    ],
+    links: [
+      { label: "Live product", href: "https://newz.srbros.in" },
+      { label: "Technical write-up", href: "#", placeholder: true },
+    ],
+  },
+  {
     slug: "disaster-management-robot",
     title: "Disaster Management Robot System",
     tagline: "A ground robot and support drone for locating and supplying disaster survivors.",
