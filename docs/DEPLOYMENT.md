@@ -88,32 +88,46 @@ variables and are read inside `src/app/api/`.
 
 ## 5. Contact form delivery
 
-`src/app/api/contact/route.ts` validates, rate-limits and logs submissions but does **not** send
-email yet. To wire up [Resend](https://resend.com):
+`src/app/api/contact/route.ts` sends over SMTP through the Hostinger mailbox using `nodemailer`.
 
-```bash
-npm install resend
-```
+### Required environment variables
 
-```ts
-// src/app/api/contact/route.ts
-import { Resend } from "resend";
-const resend = new Resend(process.env.RESEND_API_KEY);
+Set these as **unprefixed** variables (never `NEXT_PUBLIC_`, or the password ships to the browser):
 
-await resend.emails.send({
-  from: "SRbros <noreply@srbros.in>",
-  to: process.env.CONTACT_EMAIL!,
-  replyTo: email,
-  subject: `[srbros.in] ${subject} — ${name}`,
-  text: message,
-});
-```
+| Variable | Value |
+| --- | --- |
+| `SMTP_HOST` | `smtp.hostinger.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_USER` | `hello@srbros.in` |
+| `SMTP_PASSWORD` | The mailbox password from hPanel → Emails |
+| `CONTACT_TO` | `hello@srbros.in` (defaults to `SMTP_USER` if unset) |
 
-Add `RESEND_API_KEY` and `CONTACT_EMAIL` as **unprefixed** environment variables, and verify
-`srbros.in` as a sending domain inside Resend.
+On Hostinger these go in the Node.js app's **Environment Variables** panel; on Vercel, in
+Project → Settings → Environment Variables. Redeploy after adding them.
+
+### How the message is composed
+
+- **From** is always `hello@srbros.in` — the mailbox that owns the SPF/DKIM records. Sending
+  "as" the visitor would fail authentication and land in spam.
+- **Reply-To** is the visitor, so hitting reply in your mail client goes straight back to them.
+- **Subject** is `[srbros.in] <category> — <name>`, with the category taken from a fixed list
+  rather than user input.
+- Every value placed in a header is stripped of CR/LF first, so a crafted name cannot inject
+  extra headers such as a hidden `Bcc`.
+
+### If SMTP is not configured
+
+The endpoint returns **503 with an honest error** telling the visitor to email directly. It does
+not pretend to have sent the message. A contact form that silently discards mail is worse than no
+form at all — a real enquiry disappears and nobody finds out.
+
+### Testing it
+
+Submit the form on the live site and confirm the message arrives. Also check the spam folder on
+the first send. If nothing arrives, look at the deployment logs for `[contact] delivery failed`.
 
 The in-memory rate limiter resets per serverless instance. If abuse becomes an issue, move it to
-Vercel KV or Upstash Redis.
+a shared store such as Upstash Redis.
 
 ---
 
