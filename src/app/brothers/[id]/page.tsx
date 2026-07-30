@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, GraduationCap, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, GraduationCap, Mail, MapPin, Sparkles } from "lucide-react";
 
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -98,6 +98,16 @@ export default async function BrotherPage({
                 </span>
                 <span>Age {brother.age}</span>
               </p>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <a
+                href={`mailto:${brother.email}`}
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-hairline bg-graphite/60 px-4 py-2 text-sm text-fg-muted transition-colors hover:border-electric/40 hover:text-fg"
+              >
+                <Mail size={14} aria-hidden className="text-cyan-accent" />
+                {brother.email}
+              </a>
             </Reveal>
 
             <div className="mt-8 max-w-3xl space-y-5 text-base leading-relaxed text-fg-muted">

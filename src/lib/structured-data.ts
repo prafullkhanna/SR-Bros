@@ -38,6 +38,7 @@ export function personSchema(id: (typeof brothers)[number]["id"]) {
     name: person.name,
     url: `${siteConfig.url}/brothers/${person.id}`,
     description: person.bio[0],
+    email: `mailto:${person.email}`,
     jobTitle: person.role,
     knowsAbout: person.focusAreas,
     affiliation: {

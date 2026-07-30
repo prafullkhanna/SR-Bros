@@ -12,7 +12,7 @@ site is never misleading while it waits for real material.
 
 | Item | Current placeholder | Needed |
 | --- | --- | --- |
-| Email | `hello@srbros.in` | Real, monitored address |
+| ~~Email~~ | ✅ **Done** — `hello@srbros.in`, plus `sommay@srbros.in` and `ramansh@srbros.in` on the profile pages | Confirm all three inboxes actually receive mail |
 | GitHub | `github.com/prafullkhanna` | Confirm which profile to show — the repo lives at `prafullkhanna/SR-Bros`, but a profile in Sommay's own name would carry more weight with universities |
 | LinkedIn | `linkedin.com/in/srbros` | Real profile URL |
 | Instagram | `instagram.com/srbros` | Real handle, or delete the entry |

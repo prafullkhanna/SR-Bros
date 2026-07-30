@@ -70,6 +70,8 @@ export interface Brother {
   school: string;
   grade: string;
   location: string;
+  /** Personal address on the srbros.in domain. */
+  email: string;
   bio: string[];
   subjects?: string[];
   interests?: string[];

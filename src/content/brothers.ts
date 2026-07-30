@@ -18,6 +18,7 @@ export const brothers: Brother[] = [
     school: "The Heritage School, Rohini",
     grade: "Class XI",
     location: "New Delhi, India",
+    email: "sommay@srbros.in",
     accent: "electric",
     bio: [
       "Sommay builds systems end to end — the mechanics, the electronics and the code that ties them together. He started with small automation scripts, moved to microcontrollers, and now works on robotics platforms and applied AI.",
@@ -93,6 +94,7 @@ export const brothers: Brother[] = [
     school: "The Heritage School, Rohini",
     grade: "Class VI",
     location: "New Delhi, India",
+    email: "ramansh@srbros.in",
     accent: "emerald",
     bio: [
       "Ramansh is at the beginning of his journey. He asks a lot of questions, takes things apart, and is learning to code and build.",

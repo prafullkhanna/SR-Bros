@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { StructuredData } from "@/components/layout/StructuredData";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { contactLinks } from "@/content/site";
+import { brothers } from "@/content/brothers";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
@@ -98,6 +99,33 @@ export default function ContactPage() {
                   <MapPin size={13} aria-hidden />
                   New Delhi, India
                 </p>
+              </div>
+            </Reveal>
+
+            {/* Reaching one brother directly, rather than the shared inbox. */}
+            <Reveal direction="left" delay={0.05}>
+              <div className="rounded-2xl border border-hairline bg-graphite/50 p-6">
+                <h2 className="font-display text-xs uppercase tracking-[0.2em] text-fg-subtle">
+                  Reach one of us
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {brothers.map((brother) => (
+                    <li key={brother.id}>
+                      <a
+                        href={`mailto:${brother.email}`}
+                        className="group block text-sm text-fg-muted transition-colors hover:text-fg"
+                      >
+                        <span className="flex items-center gap-2 font-display text-fg">
+                          <Mail size={14} aria-hidden className="text-cyan-accent" />
+                          {brother.name}
+                        </span>
+                        <span className="mt-0.5 block pl-6 text-xs text-fg-subtle group-hover:text-fg-muted">
+                          {brother.email}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
 
