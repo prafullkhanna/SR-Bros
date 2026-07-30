@@ -134,11 +134,17 @@ export async function POST(request: Request) {
   }
 
   try {
+    const port = Number(process.env.SMTP_PORT ?? 465);
     const transporter = nodemailer.createTransport({
       host,
-      port: Number(process.env.SMTP_PORT ?? 465),
-      secure: Number(process.env.SMTP_PORT ?? 465) === 465,
+      port,
+      // 465 is implicit TLS; 587 negotiates STARTTLS after connecting.
+      secure: port === 465,
       auth: { user, pass },
+      // Fail fast rather than leaving the visitor watching a spinner.
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
     });
 
     await transporter.sendMail({
@@ -161,11 +167,23 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("[contact] delivery failed", error);
+
+    // Surface only the transport error code — never the host, user or password.
+    // This is what makes an SMTP misconfiguration diagnosable from outside
+    // without exposing anything an attacker could use.
+    const err = error as { code?: string; responseCode?: number; command?: string };
+    const diagnostic = {
+      code: typeof err.code === "string" ? err.code.slice(0, 24) : "UNKNOWN",
+      responseCode: typeof err.responseCode === "number" ? err.responseCode : undefined,
+      command: typeof err.command === "string" ? err.command.slice(0, 16) : undefined,
+    };
+
     return NextResponse.json(
       {
         ok: false,
         message:
           "We couldn't send that just now. Please email hello@srbros.in directly.",
+        diagnostic,
       },
       { status: 502 },
     );
